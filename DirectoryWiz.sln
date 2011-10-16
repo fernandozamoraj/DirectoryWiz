@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryWiz.Framework", "DirectoryWiz.Framework\DirectoryWiz.Framework.csproj", "{4533FF94-F2EA-4302-90AD-25643DA0E76C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryWiz.UnitTests", "DirectoryWiz.UnitTests\DirectoryWiz.UnitTests.csproj", "{35DDA825-4526-4DB3-AD21-D09FB6197BAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirWizConsole", "DirWizConsole\DirWizConsole.csproj", "{481FC85D-D512-438D-8331-336B22BDA36F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4533FF94-F2EA-4302-90AD-25643DA0E76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4533FF94-F2EA-4302-90AD-25643DA0E76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4533FF94-F2EA-4302-90AD-25643DA0E76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4533FF94-F2EA-4302-90AD-25643DA0E76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35DDA825-4526-4DB3-AD21-D09FB6197BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DDA825-4526-4DB3-AD21-D09FB6197BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DDA825-4526-4DB3-AD21-D09FB6197BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DDA825-4526-4DB3-AD21-D09FB6197BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{481FC85D-D512-438D-8331-336B22BDA36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481FC85D-D512-438D-8331-336B22BDA36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481FC85D-D512-438D-8331-336B22BDA36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481FC85D-D512-438D-8331-336B22BDA36F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
