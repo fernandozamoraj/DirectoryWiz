@@ -48,6 +48,8 @@
     <Compile Include="Api\FileActionBase.cs" />
     <Compile Include="Api\GeneralFileRemover.cs" />
     <Compile Include="Api\IFileRemover.cs" />
+    <Compile Include="CommandLineHelpers\CommandLineHandler.cs" />
+    <Compile Include="CommandLineHelpers\IDivLogger.cs" />
     <Compile Include="DescendingStringComparer.cs" />
     <Compile Include="DirectoryImpl.cs" />
     <Compile Include="DirectoryViewer.cs" />
