@@ -12,8 +12,8 @@ to provide a command line interface for folder cleanup.
 	Files can be targeted by extension, by file name, or by custom evaluator which
 	can be anything (e.g. Regular Expressions).
 
-    .RemoveFileByExtensions(string root, string[] extensions)
-    To remove all files in the folder and any child folders with the file extensions
+	.RemoveFileByExtensions(string root, string[] extensions)
+	To remove all files in the folder and any child folders with the file extensions
     
     .RemoveFileByName(string root, string[] names)
     To Remove Files by name
@@ -32,10 +32,10 @@ to provide a command line interface for folder cleanup.
     the path C:\path\to\MyProject
     The folders .svn obj bin and debug will all be removed when the following code runs.
     
-    using System;
-	using DirectoryWiz.Framework.Api;
+	using System;
+    using DirectoryWiz.Framework.Api;
 
-	namespace DirWizConsole
+    namespace DirWizConsole
 	{
 		class Program
 		{
@@ -62,7 +62,7 @@ to provide a command line interface for folder cleanup.
 				Console.WriteLine(e.Message);
 			}
 		}
-   }
+	}
     
 ************************************************
 *           GeneralFileCopier                  *
