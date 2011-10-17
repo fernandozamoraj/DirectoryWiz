@@ -69,55 +69,65 @@ to provide a command line interface for folder cleanup.
 ************************************************
 
 
-		.CopyStructure(string sourceFolder, string targetFolder)
-		Copies the structure of the folder from source to target.  It does not
-		copy the files.
-		
-		.CopyFull(string sourceFolder, string targetFolder)
-		Copies the entire folder tree from source to target
-		
-		.CopyFullToFlat(string sourceFolder, string targetFolder)
-		Copies the full directory to a flat structure.  Use this whenever you want 
-		flatten out the hierarchy
-		
-		CopyFullToFlat(string sourceFolder, string targetFolder, string[] fileExtensions)
-		Copies full to flat by file extensions.  For example if you want to move all your
-		.jpg files from  C:\Temp to an archivea at C:\MyPictures
-	    This would search C:\Temp and all of it's subdirectories recursively and copy all
-	    the pictures into the folder C:\MyPictures.  If a duplicate file name is found, for
-	    example one in C:\Temp\Child1\mypic.jpg and one in C:\Temp\Child2\mypic.jpg. Those
-	    pictures would end up as
-	    c:\MyPictures\mypic.jpg
-	    c:\MyPicutres\mypic(01).jpg
-	    
-	    
-	    Exampe Usage
-	     static void CopyExample()
-        {
+	.CopyStructure(string sourceFolder, string targetFolder)
+	Copies the structure of the folder from source to target.  It does not
+	copy the files.
+	
+	.CopyFull(string sourceFolder, string targetFolder)
+	Copies the entire folder tree from source to target
+	
+	.CopyFullToFlat(string sourceFolder, string targetFolder)
+	Copies the full directory to a flat structure.  Use this whenever you want 
+	flatten out the hierarchy
+	
+	CopyFullToFlat(string sourceFolder, string targetFolder, string[] fileExtensions)
+	Copies full to flat by file extensions.  For example if you want to move all your
+	.jpg files from  C:\Temp to an archivea at C:\MyPictures
+    This would search C:\Temp and all of it's subdirectories recursively and copy all
+    the pictures into the folder C:\MyPictures.  If a duplicate file name is found, for
+    example one in C:\Temp\Child1\mypic.jpg and one in C:\Temp\Child2\mypic.jpg. Those
+    pictures would end up as
+    c:\MyPictures\mypic.jpg
+    c:\MyPicutres\mypic(01).jpg
+    
+    using System;
+	using DirectoryWiz.Framework.Api;
 
-            GeneralFileCopier fileCopier = new GeneralFileCopier();
-            fileCopier.ErrorOccurred += new EventHandler<FileActionEventArgs>(fileCopier_ErrorOccurred);
-            fileCopier.OnProgress += new EventHandler<FileActionEventArgs>(fileCopier_OnProgress);
+	namespace DirWizConsole
+	{
+		class Program
+		{
+    		//Exampe Usage
+			static void CopyExample()
+			{
 
-            //Copy the entire folder from C:\temp to D:\backup
-            fileCopier.CopyFull("C:\\Temp\\", "D:\\Backup");
-  
-            //Cooy all images from D:\Backup and its subfolders into the D:\Backup\Images
-            //No subfolders will be created in the target folder
-            //Any secondary files with same names will have a number appended to them
-            //Example:   D:\BackupImages\mypic.jpg D:\BackupImages\mypic(1).jpg
-            fileCopier.CopyFullToFlat("D:\\Backup", "D:\\Backup\\images", new string[] { ".bmp", ".png", ".gif", ".bmp" });
+				GeneralFileCopier fileCopier = new GeneralFileCopier();
+				fileCopier.ErrorOccurred += new EventHandler<FileActionEventArgs>(fileCopier_ErrorOccurred);
+				fileCopier.OnProgress += new EventHandler<FileActionEventArgs>(fileCopier_OnProgress);
 
-        }
+				//Copy the entire folder from C:\temp to D:\backup
+				fileCopier.CopyFull("C:\\Temp\\", "D:\\Backup");
+	  
+				//Cooy all images from D:\Backup and its subfolders into the D:\Backup\Images
+				//No subfolders will be created in the target folder
+				//Any secondary files with same names will have a number appended to them
+				//Example:   D:\BackupImages\mypic.jpg D:\BackupImages\mypic(1).jpg
+				fileCopier.CopyFullToFlat("D:\\Backup", "D:\\Backup\\images", new string[] { ".bmp", ".png", ".gif", ".bmp" });
 
-        static void fileCopier_OnProgress(object sender, FileActionEventArgs e)
-        {
-            Console.WriteLine(e.Message);
-        }
+			}
 
-        static void fileCopier_ErrorOccurred(object sender, FileActionEventArgs e)
-        {
-            Console.WriteLine(e.Message);
-        }
+			static void fileCopier_OnProgress(object sender, FileActionEventArgs e)
+			{
+				Console.WriteLine(e.Message);
+			}
+			
+			static void fileCopier_ErrorOccurred(object sender, FileActionEventArgs e)
+			{
+				Console.WriteLine(e.Message);
+			}
+		}
+	}
+
+        
 	
 		
