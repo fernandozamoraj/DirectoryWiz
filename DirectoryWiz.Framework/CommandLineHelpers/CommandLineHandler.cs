@@ -18,6 +18,8 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
                     throw new CommandLineEntryException("Help Information", null);
                 }
 
+                //TODO: This is a good candidate for chain of responsibility pattern
+                //Because once handled it stops
                 if (IsRemove(args))
                 {
                     if (IsRemoveByExtensions(args))
@@ -41,7 +43,6 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
                 {
                     throw new CommandLineEntryException("Usage", null);
                 }
-
             }
             catch(CommandLineEntryException exception)
             {

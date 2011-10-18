@@ -130,4 +130,44 @@ The folders .svn obj bin and debug will all be removed when the following code r
 
         
 	
+************************************
+* Command Line Usage               *
+************************************
+
+*********** Help **********************
+div --help
+
+	
+*********** Remove Examples ***********
+
+
+To Remove by extension
+div --remove -e "C:\path\to\myfolder\" ".jpg .png .bmp .jpeg"
+
+To Remove by file name
+div --remove -n "C:\path\to\myfolder\" "myfile.bmp otherfile.txt thirdfile.doc"
+
+To Remove by regex
+div --remove -rx "C:\path\to\myfolder\" "[A-Z][1-9]" (Not implemented yet)
+
+*********** Copy Examples (Not Yet Implemented) ***********
+
+To Copy full tree
+div --copy -fu "C:/my/source/path" "C:/my/target/path"
+
+To copy folders only
+div --copy -em "C:/my/source/path" "C:/my/target/path"
+
+To copy full tree to flat hierarchy
+div --copy -fl "C:/my/source/path" "C:/my/target/path"
+
+To copy full tree to flat hierarchy by file extensions
+div --copy -fl "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
+
+To copy full tree to flat hierarchy by ignoring certain file extensions
+div --copy -fi "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
+
+To Copy by regex any full file path that matches the expression
+div --copy -fl -rx "[A-Z][1-9]" (Not implemented yet)
+
 		
