@@ -11,7 +11,9 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             + "div --remove -e \"C:\\path\\to\\myfolder\\\" \".jpg .png .bmp .jpeg\"" + Environment.NewLine
             + " " + Environment.NewLine
             + "To Remove by file name" + Environment.NewLine
-            + "div --remove -n \"C:\\path\\to\\myfolder\\\" \"myfile.bmp otherfile.txt thirdfile.doc\"" +
+            + "div --remove -n \"C:\\path\\to\\myfolder\\\" \"myfile.bmp otherfile.txt thirdfile.doc\"" 
+            + "To Remove by folder name" + Environment.NewLine
+            + "div --remove -fn \"C:\\path\\to\\myfolder\\\" \"myfile.bmp otherfile.txt thirdfile.doc\"" +
             Environment.NewLine
             + " " + Environment.NewLine
             + "To Remove by regex" + Environment.NewLine

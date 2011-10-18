@@ -30,6 +30,10 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
                     {
                         RemoveByFileNames(GetRootDirectory(args, 2), GetExtensions(args, 3));
                     }
+                    else if(IsRemoveByFolderName(args))
+                    {
+                        RemoveByFolderName(GetRootDirectory(args, 2), GetExtensions(args, 3));
+                    }
                     else
                     {
                         throw new CommandLineEntryException("Remove command has some invalid entries", null);
@@ -60,6 +64,9 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
                 };
             }
         }
+
+       
+
 
         public void Handle(string[] args, IDivLogger divLogger)
         {
@@ -131,6 +138,19 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             };
         }
 
+        private void RemoveByFolderName(string rootDirectory, string[] folderNames)
+        {
+            _handler = () =>
+            {
+
+                GeneralFileRemover fileRemover = new GeneralFileRemover();
+                fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message);
+                fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message);
+                fileRemover.RemoveFolderByName(rootDirectory, folderNames);
+                _logger.Log("Process completed successfuly");
+            };
+        }
+
         private bool IsRemoveByFileNames(string[] args)
         {
             if (args.Length < 2)
@@ -138,6 +158,20 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
 
             if(args[0].ToLower() == _commandLiterals.RemoveCommand &&
                args[1].ToLower() == _commandLiterals.FileNamesSwitch)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsRemoveByFolderName(string[] args)
+        {
+            if (args.Length < 2)
+                return false;
+
+            if (args[0].ToLower() == _commandLiterals.RemoveCommand &&
+               args[1].ToLower() == _commandLiterals.FolderNamesSwitch)
             {
                 return true;
             }

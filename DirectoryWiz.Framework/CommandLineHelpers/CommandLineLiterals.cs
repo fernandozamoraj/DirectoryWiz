@@ -25,5 +25,10 @@
         {
             get { return "-n"; }
         }
+
+        public string FolderNamesSwitch
+        {
+            get { return "-fn"; }
+        }
     }
 }
