@@ -147,7 +147,7 @@ div --remove -e "C:\path\to\myfolder\" ".jpg .png .bmp .jpeg"
 To Remove by file name
 div --remove -n "C:\path\to\myfolder\" "myfile.bmp otherfile.txt thirdfile.doc"
 
-To Remove by folder name" + Environment.NewLine
+To Remove by folder name
 div --remove -fn "C:\path\to\myfolder\" "bin debug .svn" 
 
 To Remove by regex

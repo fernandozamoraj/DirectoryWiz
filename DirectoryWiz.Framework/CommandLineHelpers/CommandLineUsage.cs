@@ -13,7 +13,7 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             + "To Remove by file name" + Environment.NewLine
             + "div --remove -n \"C:\\path\\to\\myfolder\\\" \"myfile.bmp otherfile.txt thirdfile.doc\"" 
             + "To Remove by folder name" + Environment.NewLine
-            + "div --remove -fn \"C:\\path\\to\\myfolder\\\" \"myfile.bmp otherfile.txt thirdfile.doc\"" +
+            + "div --remove -fn \"C:\\path\\to\\myfolder\\\" \"bin debug obj .svn\"" +
             Environment.NewLine
             + " " + Environment.NewLine
             + "To Remove by regex" + Environment.NewLine
