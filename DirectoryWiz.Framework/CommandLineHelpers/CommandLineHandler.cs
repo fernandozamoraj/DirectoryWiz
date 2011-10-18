@@ -52,15 +52,15 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             {
                 this._handler = () =>
                                     {
-                                        _logger.Log(exception.Message);
-                                        _logger.Log(CommandLineUsage.Usage);
+                                        _logger.Log(exception.Message, LogSeverity.High);
+                                        _logger.Log(CommandLineUsage.Usage, LogSeverity.Low);
                                     };
             }
             catch (Exception exception)
             {
                 this._handler = () =>
                 {
-                    _logger.Log(exception.Message);
+                    _logger.Log(exception.Message, LogSeverity.Highest);
                 };
             }
         }
@@ -79,7 +79,7 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             }
             catch (Exception exception)
             {
-                _logger.Log(exception.Message);
+                _logger.Log(exception.Message, LogSeverity.Highest);
             }
         }
 
@@ -131,10 +131,10 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             {
 
                 GeneralFileRemover fileRemover = new GeneralFileRemover();
-                fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message);
-                fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message);
+                fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message, LogSeverity.Medium);
+                fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message, LogSeverity.Highest);
                 fileRemover.RemoveFileByName(rootDirectory, fileNames);
-                _logger.Log("Process completed successfuly");
+                _logger.Log("Process completed successfuly", LogSeverity.Low);
             };
         }
 
@@ -144,10 +144,10 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             {
 
                 GeneralFileRemover fileRemover = new GeneralFileRemover();
-                fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message);
-                fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message);
+                fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message, LogSeverity.Medium);
+                fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message, LogSeverity.Highest);
                 fileRemover.RemoveFolderByName(rootDirectory, folderNames);
-                _logger.Log("Process completed successfuly");
+                _logger.Log("Process completed successfuly", LogSeverity.Low);
             };
         }
 
@@ -185,10 +185,10 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
                                {
 
                                    GeneralFileRemover fileRemover = new GeneralFileRemover();
-                                   fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message);
-                                   fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message);
+                                   fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message, LogSeverity.Medium);
+                                   fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message, LogSeverity.Highest);
                                    fileRemover.RemoveFileByExtensions(rootDirectory, extensions);
-                                   _logger.Log("Process completed successfuly");
+                                   _logger.Log("Process completed successfuly", LogSeverity.Low);
 
                                };
         }
