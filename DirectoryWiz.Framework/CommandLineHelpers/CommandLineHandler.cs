@@ -7,51 +7,90 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
     {
         private Action _handler;
         private IDivLogger _logger;
+        private CommandLineLiterals _commandLiterals = new CommandLineLiterals();
 
-        public bool CanHandle(string[] args)
+        public void PrepareHandler(string[] args)
         {
             try
             {
+                if(IsHelp(args))
+                {
+                    throw new CommandLineEntryException("Help Information", null);
+                }
+
                 if (IsRemove(args))
                 {
                     if (IsRemoveByExtensions(args))
                     {
-                        RemoveByExtensions(GetRootDirectory(args), GetExtensions(args));
+                        RemoveByExtensions(GetRootDirectory(args, 2), GetExtensions(args, 3));
                     }
                     else if (IsRemoveByFileNames(args))
                     {
-                        RemoveByFileNames(GetRootDirectory(args), GetExtensions(args));
+                        RemoveByFileNames(GetRootDirectory(args, 2), GetExtensions(args, 3));
                     }
                     else
                     {
-                        throw new Exception("Cannot handle removal");
+                        throw new CommandLineEntryException("Remove command has some invalid entries", null);
                     }
                 }
                 else if (IsCopy(args))
                 {
-
+                    throw new CommandLineEntryException("Copy command has is not yet available", null);
+                }
+                else
+                {
+                    throw new CommandLineEntryException("Usage", null);
                 }
 
             }
-            catch (Exception)
+            catch(CommandLineEntryException exception)
             {
-                return false;
+                this._handler = () =>
+                                    {
+                                        _logger.Log(exception.Message);
+                                        _logger.Log(CommandLineUsage.Usage);
+                                    };
             }
-
-            return true;
+            catch (Exception exception)
+            {
+                this._handler = () =>
+                {
+                    _logger.Log(exception.Message);
+                };
+            }
         }
 
-        public void Handle(IDivLogger divLogger)
+        public void Handle(string[] args, IDivLogger divLogger)
         {
             _logger = divLogger;
-            _handler.Invoke();
+
+            try
+            {
+                PrepareHandler(args);
+                _handler.Invoke();
+            }
+            catch (Exception exception)
+            {
+                _logger.Log(exception.Message);
+            }
+        }
+
+        private bool IsHelp(string[] args)
+        {
+            foreach(var arg in args)
+            {
+                if(arg == _commandLiterals.HelpCommand)
+                    return true;
+            }
+
+            return false;
         }
 
         private bool IsCopy(string[] args)
         {
             foreach(string arg in args)
             {
-                if(arg.ToLower() == "--copy")
+                if(arg.ToLower() == _commandLiterals.CopyCommand)
                 {
                     return true;
                 }
@@ -60,24 +99,49 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
             return false;
         }
 
-        private string[] GetExtensions(string[] args)
+        private string[] GetExtensions(string[] args, int indexOfArg)
         {
-            return new string[3];
+            if(args.Length < indexOfArg)
+                return new string[0];
+
+            string[] extensions = args[indexOfArg].Split(' ');
+
+            return extensions;
         }
 
-        private string GetRootDirectory(string[] args)
+        private string GetRootDirectory(string[] args, int indexOfArg)
         {
-            throw new NotImplementedException();
+            if (args.Length < indexOfArg)
+                return string.Empty;
+
+            return args[indexOfArg];
         }
 
-        private void RemoveByFileNames(object getRootDirectory, object getExtensions)
+        private void RemoveByFileNames(string rootDirectory, string[] fileNames)
         {
-            throw new NotImplementedException();
+            _handler = () =>
+            {
+
+                GeneralFileRemover fileRemover = new GeneralFileRemover();
+                fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message);
+                fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message);
+                fileRemover.RemoveFileByName(rootDirectory, fileNames);
+                _logger.Log("Process completed successfuly");
+            };
         }
 
         private bool IsRemoveByFileNames(string[] args)
         {
-            throw new NotImplementedException();
+            if (args.Length < 2)
+                return false;
+
+            if(args[0].ToLower() == _commandLiterals.RemoveCommand &&
+               args[1].ToLower() == _commandLiterals.FileNamesSwitch)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void RemoveByExtensions(string rootDirectory, string[] extensions)
@@ -88,7 +152,9 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
                                    GeneralFileRemover fileRemover = new GeneralFileRemover();
                                    fileRemover.OnProgress += (sender, e) => _logger.Log(e.Message);
                                    fileRemover.ErrorOccurred += (sender, e) => _logger.Log(e.Message);
-                                   fileRemover.RemoveFileByExtensions(rootDirectory, extensions); 
+                                   fileRemover.RemoveFileByExtensions(rootDirectory, extensions);
+                                   _logger.Log("Process completed successfuly");
+
                                };
         }
 
@@ -96,7 +162,7 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
         {
             foreach (string arg in args)
             {
-                if (arg.ToLower() == "-e")
+                if (arg.ToLower() == _commandLiterals.FileExtensionsSwitch)
                 {
                     return true;
                 }
@@ -107,14 +173,14 @@ namespace DirectoryWiz.Framework.CommandLineHelpers
 
         private bool IsRemove(string[] args)
         {
-            foreach (string arg in args)
-            {
-                if (arg.ToLower() == "--remove")
-                {
-                    return true;
-                }
-            }
+            if (args.Length < 1)
+                return false;
 
+            if (args[0].ToLower() == _commandLiterals.RemoveCommand)
+            {
+                return true;
+            }
+        
             return false;
         }
     }
