@@ -1,5 +1,6 @@
 ﻿using System;
 using DirectoryWiz.Framework.CommandLineHelpers;
+using DirectoryWiz.Framework.CommandLineHelpers.Handlers;
 
 namespace DirWizConsole
 {
@@ -7,11 +8,11 @@ namespace DirWizConsole
     {
         static void Main(string[] args)
         {
+            Console.ReadLine();
+
             CommandLineHandler handler = new CommandLineHandler();
 
-            handler.Handle(args, new ConsoleLogger());
-
-            Console.ReadLine();
+            handler.HandleRequest(args, new ConsoleLogger());
         }
     }
 

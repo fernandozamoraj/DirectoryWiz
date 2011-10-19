@@ -48,11 +48,16 @@
     <Compile Include="Api\FileActionBase.cs" />
     <Compile Include="Api\GeneralFileRemover.cs" />
     <Compile Include="Api\IFileRemover.cs" />
+    <Compile Include="CommandLineHelpers\Handlers\BaseHandler.cs" />
     <Compile Include="CommandLineHelpers\CommandLineEntryException.cs" />
-    <Compile Include="CommandLineHelpers\CommandLineHandler.cs" />
+    <Compile Include="CommandLineHelpers\Handlers\CommandLineHandler.cs" />
     <Compile Include="CommandLineHelpers\CommandLineLiterals.cs" />
     <Compile Include="CommandLineHelpers\CommandLineUsage.cs" />
+    <Compile Include="CommandLineHelpers\Handlers\CopyHandler.cs" />
+    <Compile Include="CommandLineHelpers\Handlers\HelpHandler.cs" />
+    <Compile Include="CommandLineHelpers\Handlers\ICommandLineHandler.cs" />
     <Compile Include="CommandLineHelpers\IDivLogger.cs" />
+    <Compile Include="CommandLineHelpers\Handlers\RemoveHandler.cs" />
     <Compile Include="DescendingStringComparer.cs" />
     <Compile Include="DirectoryImpl.cs" />
     <Compile Include="DirectoryViewer.cs" />
