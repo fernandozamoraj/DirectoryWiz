@@ -1,3 +1,7 @@
+This product is licensed under the MIT Open Source Initiative License agreeement.
+Please read the License.txt document for more information.
+
+
 Usage:
 
 Clean Folders of subfolders and files
