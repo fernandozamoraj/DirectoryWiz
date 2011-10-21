@@ -7,7 +7,7 @@ namespace DirectoryWiz.Framework.CommandLineHelpers.Handlers
         protected IDivLogger _logger;
         protected CommandLineLiterals _commandLiterals = new CommandLineLiterals();
 
-        protected string[] GetExtensions(string[] args, int indexOfArg)
+        protected string[] FromOneArgumentToTokens(string[] args, int indexOfArg)
         {
             if (args.Length <= indexOfArg)
                 return new string[0];
@@ -18,6 +18,14 @@ namespace DirectoryWiz.Framework.CommandLineHelpers.Handlers
         }
 
         protected string GetRootDirectory(string[] args, int indexOfArg)
+        {
+            if (args.Length < indexOfArg)
+                return string.Empty;
+
+            return args[indexOfArg];
+        }
+
+        protected string GetArgument(string[] args, int indexOfArg)
         {
             if (args.Length < indexOfArg)
                 return string.Empty;

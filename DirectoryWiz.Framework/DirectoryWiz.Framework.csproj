@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Api\FileActionBase.cs" />
     <Compile Include="Api\GeneralFileRemover.cs" />
+    <Compile Include="Api\IFileProcessor.cs" />
     <Compile Include="Api\IFileRemover.cs" />
     <Compile Include="CommandLineHelpers\Handlers\BaseHandler.cs" />
     <Compile Include="CommandLineHelpers\CommandLineEntryException.cs" />
@@ -71,9 +72,10 @@
     <Compile Include="Api\IFileCopier.cs" />
     <Compile Include="IFolderNavigator.cs" />
     <Compile Include="MatchEvaluators\IMatchFileByEvaluator.cs" />
-    <Compile Include="MatchEvaluators\MatchByExtensionEvaluator.cs" />
-    <Compile Include="MatchEvaluators\MatchByNameEvaluator.cs" />
+    <Compile Include="MatchEvaluators\MatchByFileExtensionEvaluator.cs" />
+    <Compile Include="MatchEvaluators\MatchFileByNameEvaluator.cs" />
     <Compile Include="MatchEvaluators\MatchFolderByNameEvaluator.cs" />
+    <Compile Include="MatchEvaluators\MatchFolderByRegularExpressionEvaluator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

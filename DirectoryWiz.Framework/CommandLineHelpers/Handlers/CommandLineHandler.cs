@@ -1,4 +1,5 @@
 ﻿using System;
+using DirectoryWiz.Framework.Api;
 
 namespace DirectoryWiz.Framework.CommandLineHelpers.Handlers
 {
@@ -16,7 +17,7 @@ namespace DirectoryWiz.Framework.CommandLineHelpers.Handlers
             try
             {
                 //Chain of responsibility pattern
-                RemoveHandler removeHandler = new RemoveHandler();
+                RemoveHandler removeHandler = new RemoveHandler(new GeneralFileRemover());
                 CopyHandler copyHandler = new CopyHandler();
                 HelpHandler helpHandler = new HelpHandler();
 

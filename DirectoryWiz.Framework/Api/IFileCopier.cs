@@ -1,6 +1,6 @@
 namespace DirectoryWiz.Framework.Api
 {
-    public interface IFileCopier
+    public interface IFileCopier : IFileProcessor
     {
         void CopyStructure(string sourceFolder, string targetFolder);
         void CopyFull(string sourceFolder, string targetFolder);

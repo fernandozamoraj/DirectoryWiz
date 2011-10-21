@@ -15,14 +15,14 @@ namespace DirectoryWiz.Framework.Api
 
         public void RemoveFileByExtensions(string root, string[] extensions)
         {
-            MatchByExtensionEvaluator evaluator = new MatchByExtensionEvaluator(extensions);
+            MatchByFileExtensionEvaluator evaluator = new MatchByFileExtensionEvaluator(extensions);
 
             RemoveFilesByCustomEvaluator(root, evaluator);
         }
 
         public void RemoveFileByName(string root, string[] names)
         {
-            MatchByNameEvaluator evaluator = new MatchByNameEvaluator(names);
+            MatchFileByNameEvaluator evaluator = new MatchFileByNameEvaluator(names);
 
             RemoveFilesByCustomEvaluator(root, evaluator);
         }
@@ -30,6 +30,13 @@ namespace DirectoryWiz.Framework.Api
         public void RemoveFolderByName(string root, string[] names)
         {
             MatchFolderByNameEvaluator evaluator = new MatchFolderByNameEvaluator(names);
+
+            RemoveFoldersByCustomEvaluator(root, evaluator);
+        }
+
+        public void RemoveByRegularExpression(string root, string pattern)
+        {
+            MatchFolderByRegularExpressionEvaluator evaluator = new MatchFolderByRegularExpressionEvaluator(pattern);
 
             RemoveFoldersByCustomEvaluator(root, evaluator);
         }

@@ -27,6 +27,9 @@ To RemoveFies by a custom evaluator
     
 .RemoveFoldersByCustomEvaluator(string rootFolder, IMatchFileByEvaluator evaluator)
 To RemoveFiles by a custom evaluator
+
+.void RemoveByRegularExpression(string rootDirectory, string pattern)
+To Remove Files/folders by a regular expression pattern
     
 To create your own custom evaluator just implement the method
 bool IMatchFileEvaluator.IsMatch(string file);
@@ -143,8 +146,6 @@ div --help
 
 	
 *********** Remove Examples ***********
-
-
 To Remove by extension
 div --remove -e "C:\path\to\myfolder\" ".jpg .png .bmp .jpeg"
 
@@ -154,27 +155,34 @@ div --remove -n "C:\path\to\myfolder\" "myfile.bmp otherfile.txt thirdfile.doc"
 To Remove by folder name
 div --remove -fn "C:\path\to\myfolder\" "bin debug .svn" 
 
-To Remove by regex
-div --remove -rx "C:\path\to\myfolder\" "[A-Z][1-9]" (Not implemented yet)
+To Remove by regex (Removes files and also folders)
+div --remove -rx "C:\path\to\myfolder\" "[A-Z][1-9]"
 
 *********** Copy Examples (Not Yet Implemented) ***********
 
 To Copy full tree
 div --copy -fu "C:/my/source/path" "C:/my/target/path"
 
-To copy folders only
-div --copy -em "C:/my/source/path" "C:/my/target/path"
+To copy full tree by file extensions
+div --copy -fue "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
 
-To copy full tree to flat hierarchy
-div --copy -fl "C:/my/source/path" "C:/my/target/path"
-
-To copy full tree to flat hierarchy by file extensions
-div --copy -fl "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
-
-To copy full tree to flat hierarchy by ignoring certain file extensions
-div --copy -fi "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
+To copy full tree by ignoring certain file extensions
+div --copy -fui "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
 
 To Copy by regex any full file path that matches the expression
-div --copy -fl -rx "[A-Z][1-9]" (Not implemented yet)
+div --copy -fux -rx "C:/my/source/path" "C:/my/target/path" "[A-Z][1-9]"
+
+To copy folders only
+div --copy -fo "C:/my/source/path" "C:/my/target/path"
+
+To copy full tree to flat hierarchy
+div --copy -ff "C:/my/source/path" "C:/my/target/path"
+
+To copy full tree to flat hierarchy by file extensions
+div --copy -ffe "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
+
+To copy full tree to flat hierarchy by ignoring certain file extensions
+div --copy -ffi "C:/my/source/path" "C:/my/target/path" ".jpg .png .img"
+
 
 		

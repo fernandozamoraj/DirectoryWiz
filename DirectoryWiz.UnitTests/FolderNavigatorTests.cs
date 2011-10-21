@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace DirectoryWiz.UnitTests
 {
-
     public class FolderNavigatorTestsContext
     {
         protected FolderNavigator Navigator;

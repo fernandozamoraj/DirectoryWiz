@@ -8,11 +8,32 @@ namespace DirWizConsole
     {
         static void Main(string[] args)
         {
-            Console.ReadLine();
+            //Console.ReadLine(); //To hook up debugger after running from command line
 
             CommandLineHandler handler = new CommandLineHandler();
 
+            IDivLogger logger = GetLogger(args);
+
             handler.HandleRequest(args, new ConsoleLogger());
+        }
+
+        private static IDivLogger GetLogger(string[] args)
+        {
+            foreach(var arg in args)
+            {
+                if (arg.ToLower() == "-silent")
+                    return new SilentLogger();
+            }
+
+            return new ConsoleLogger();
+        }
+    }
+
+    public class SilentLogger : IDivLogger
+    {
+        public void Log(string message, LogSeverity logSeverity)
+        {
+            //ignore all messages
         }
     }
 

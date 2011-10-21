@@ -78,7 +78,7 @@ namespace DirectoryWiz.Framework.Api
         {
             _directory.CreateFolder(targetFolder);
 
-            MatchEvaluators.MatchByExtensionEvaluator evaluator = new MatchByExtensionEvaluator(fileExtensions);
+            MatchEvaluators.MatchByFileExtensionEvaluator evaluator = new MatchByFileExtensionEvaluator(fileExtensions);
 
             foreach (string file in _directoryViewer.Files)
             {

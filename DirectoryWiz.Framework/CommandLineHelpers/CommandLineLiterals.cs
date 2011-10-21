@@ -1,4 +1,6 @@
-﻿namespace DirectoryWiz.Framework.CommandLineHelpers
+﻿using System;
+
+namespace DirectoryWiz.Framework.CommandLineHelpers
 {
     public class CommandLineLiterals
     {
@@ -29,6 +31,11 @@
         public string FolderNamesSwitch
         {
             get { return "-fn"; }
+        }
+
+        public string RegularExpressionSwitch
+        {
+            get { return "-rx"; }
         }
     }
 }
